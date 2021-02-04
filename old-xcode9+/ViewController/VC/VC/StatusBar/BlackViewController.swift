@@ -23,11 +23,21 @@
 import UIKit
 
 class BlackViewController: UIViewController {
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-   }
+    
+    // Status Bar Style 설정
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // Status Hidden 여부 설정
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
 }
 
 

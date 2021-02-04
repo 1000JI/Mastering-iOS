@@ -23,16 +23,20 @@
 import UIKit
 
 class SecondToolbarViewController: UIViewController {
-   
-   @IBAction func toggleToolbar(_ sender: Any) {
-      
-   }
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      
-   }
+    
+    @IBAction func toggleToolbar(_ sender: Any) {
+        let hidden = navigationController?.isToolbarHidden ?? false
+        navigationController?.setToolbarHidden(!hidden, animated: true)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let flexibleSpaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        
+        setToolbarItems([flexibleSpaceItem, addItem], animated: true)
+    }
 }
 
 

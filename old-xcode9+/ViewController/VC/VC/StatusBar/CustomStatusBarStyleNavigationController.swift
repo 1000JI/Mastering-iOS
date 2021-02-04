@@ -23,5 +23,11 @@
 import UIKit
 
 class CustomStatusBarStyleNavigationController: UINavigationController {
-   
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return topViewController // 마지막에 Push 된 Child View Controller가 Status Bar를 설정
+    }
+    
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        return topViewController // 마지막에 Push 된 Child View Controller가 Status Bar를 설정
+    }
 }

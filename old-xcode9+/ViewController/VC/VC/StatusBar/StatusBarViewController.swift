@@ -23,31 +23,54 @@
 import UIKit
 
 class StatusBarViewController: UIViewController {
-   
-   
-   @IBAction func toggleVisibility(_ sender: Any) {
-      
-   }
-   
-      
-   @IBAction func toggleStyle(_ sender: Any) {
-      
-   }
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      // Do any additional setup after loading the view.
-      
-   }
+    
+    var hidden = false
+    
+    override var prefersStatusBarHidden: Bool {
+        return hidden
+    }
+    
+    @IBAction func toggleVisibility(_ sender: Any) {
+        hidden.toggle()
+        
+        // StatusBar의 설정 값을 다시 한번 읽어들여 Update한다.
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    var style = UIStatusBarStyle.default
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return style
+    }
+    
+    @IBAction func toggleStyle(_ sender: Any) {
+        style = style == .default ? .lightContent : .default
+        
+        // StatusBar의 설정 값을 다시 한번 읽어들여 Update한다.
+        setNeedsStatusBarAppearanceUpdate()
+        
+        let color = style == .default ? UIColor.white : UIColor.darkGray
+        self.view.backgroundColor = color
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        
+    }
 }
 
 
 
 extension StatusBarViewController {
-   @IBAction func unwindToHere(_ sender: UIStoryboardSegue) {
-      
-   }
+    @IBAction func unwindToHere(_ sender: UIStoryboardSegue) {
+        
+    }
 }
 
 

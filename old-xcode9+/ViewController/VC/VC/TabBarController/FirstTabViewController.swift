@@ -23,21 +23,28 @@
 import UIKit
 
 class FirstTabViewController: UIViewController {
-   
-   @IBAction func selectSecondTab(_ sender: Any) {
-      
-   }
-   
-   @IBAction func selectThirdTab(_ sender: Any) {
-      
-   }
-   
-      
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      
-   }   
+    
+    @IBAction func selectSecondTab(_ sender: Any) {
+        
+    }
+    
+    @IBAction func selectThirdTab(_ sender: Any) {
+        
+    }
+    
+    // 초기화 작업
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tabBarItem.title = "FIRST"
+        tabBarItem.badgeValue = "HOT"
+    }
 }
 
 
