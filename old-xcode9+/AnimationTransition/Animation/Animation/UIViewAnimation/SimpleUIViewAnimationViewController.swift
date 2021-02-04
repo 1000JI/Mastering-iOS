@@ -23,24 +23,24 @@
 import UIKit
 
 class SimpleUIViewAnimationViewController: UIViewController {
-   
-   @IBOutlet weak var redView: UIView!
-   
-   @IBAction func reset(_ sender: Any?) {
-      redView.backgroundColor = UIColor.red
-      redView.alpha = 1.0
-      redView.frame = CGRect(x: 50, y: 100, width: 50, height: 50)
-   }
-   
-   @IBAction func animate(_ sender: Any) {
-      
-   }
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      reset(nil)
-   }
+    
+    @IBOutlet weak var redView: UIView!
+    
+    @IBAction func reset(_ sender: Any?) {
+        redView.backgroundColor = UIColor.red
+        redView.alpha = 1.0
+        redView.frame = CGRect(x: 50, y: 100, width: 50, height: 50)
+    }
+    
+    @IBAction func animate(_ sender: Any) {
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        reset(nil)
+    }
 }
 
 
