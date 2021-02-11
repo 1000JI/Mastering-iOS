@@ -27,6 +27,8 @@
 		AA928B35213D326700306725 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA928B33213D326700306725 /* Main.storyboard */; };
 		AA928B37213D326800306725 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA928B36213D326800306725 /* Assets.xcassets */; };
 		AA928B3A213D326800306725 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA928B38213D326800306725 /* LaunchScreen.storyboard */; };
+		AFB5A38125CCFA5500EC1EED /* ZoomAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB5A38025CCFA5500EC1EED /* ZoomAnimationController.swift */; };
+		AFB5A38425CD0BFD00EC1EED /* PinchTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB5A38325CD0BFD00EC1EED /* PinchTransitionController.swift */; };
 		AFCE482525CCE4E90020E2B0 /* SimplePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCE482425CCE4E90020E2B0 /* SimplePresentationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		AA928B36213D326800306725 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA928B39213D326800306725 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA928B3B213D326800306725 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFB5A38025CCFA5500EC1EED /* ZoomAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomAnimationController.swift; sourceTree = "<group>"; };
+		AFB5A38325CD0BFD00EC1EED /* PinchTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchTransitionController.swift; sourceTree = "<group>"; };
 		AFCE482425CCE4E90020E2B0 /* SimplePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +98,7 @@
 				AA308EFE213F51BA006FD282 /* CustomTransition.storyboard */,
 				AA308F00213F51CF006FD282 /* CustomTransitionViewController.swift */,
 				AA6CA503213F56650018ED50 /* ImageViewController.swift */,
+				AFB5A38025CCFA5500EC1EED /* ZoomAnimationController.swift */,
 			);
 			path = CustomTransition;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 		AA83BA74213FCCB50097E428 /* InteractiveTransition */ = {
 			isa = PBXGroup;
 			children = (
+				AFB5A38325CD0BFD00EC1EED /* PinchTransitionController.swift */,
 			);
 			path = InteractiveTransition;
 			sourceTree = "<group>";
@@ -255,6 +261,8 @@
 				AA83968A213E7CDB0067B36F /* PresentationViewController.swift in Sources */,
 				AA839686213E4E6F0067B36F /* PresentationStyleViewController.swift in Sources */,
 				AA83968C213E80680067B36F /* ModalViewController.swift in Sources */,
+				AFB5A38425CD0BFD00EC1EED /* PinchTransitionController.swift in Sources */,
+				AFB5A38125CCFA5500EC1EED /* ZoomAnimationController.swift in Sources */,
 				AA6CA504213F56650018ED50 /* ImageViewController.swift in Sources */,
 				AA883EDD213EF56400DFB871 /* CustomPresentationViewController.swift in Sources */,
 			);
