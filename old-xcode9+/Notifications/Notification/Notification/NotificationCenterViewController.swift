@@ -22,17 +22,50 @@
 import UIKit
 
 class NotificationCenterViewController: UIViewController {
-   
-   @IBOutlet weak var valueLabel: UILabel!
-   
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
+    
+    @IBOutlet weak var valueLabel: UILabel!
+    
+    @objc func process(notification: Notification) {
+        print(Thread.isMainThread ? "Main Thread" : "Background Thread")
+        
+        guard let value = notification.userInfo?["NewValue"] as? String else { return }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.valueLabel.text = value
+        }
+        
+        print("#1", #function)
+    }
+    
+    var token: NSObjectProtocol?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 1번째 방법
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(process(notification:)),
+                                               name: Notification.Name.NewValueDidInput,
+                                               object: nil)
+        
+        // 2번째 방법
+        token = NotificationCenter.default.addObserver(forName: Notification.Name.NewValueDidInput,
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] (notification) in
+            guard let value = notification.userInfo?["NewValue"] as? String else { return }
 
-   }
-   
-   deinit {
-      
-      print(#function)
-   }
+            self?.valueLabel.text = value
+
+            print("#2 handling \(notification.name)")
+        }
+    }
+    
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+        
+        NotificationCenter.default.removeObserver(self)
+        print(#function)
+    }
 }

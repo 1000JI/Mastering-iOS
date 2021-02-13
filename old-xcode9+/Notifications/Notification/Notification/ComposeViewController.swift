@@ -22,29 +22,39 @@
 
 import UIKit
 
+extension Notification.Name {
+    static let NewValueDidInput = Notification.Name("NewValueDidInputNotification")
+}
 
 class ComposeViewController: UIViewController {
-   
-   @IBOutlet weak var inputField: UITextField!
-   
-   @IBAction func close(_ sender: Any) {
-      dismiss(animated: true, completion: nil)
-   }
-   
-   @IBAction func postValue(_ sender: Any) {
-      
-      dismiss(animated: true, completion: nil)
-   }
-   
-   override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      
-      inputField.becomeFirstResponder()
-   }
-   
-   override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      
-      inputField.resignFirstResponder()
-   }
+    
+    @IBOutlet weak var inputField: UITextField!
+    
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func postValue(_ sender: Any) {
+        guard let text = inputField.text else { return }
+        
+        DispatchQueue.global().async {
+            NotificationCenter.default.post(name: Notification.Name.NewValueDidInput,
+                                            object: nil, // Notification을 전달하는 객체를 전달 할 때 사용한다. Notification을 구분해야 한다면(!)
+                                            userInfo: ["NewValue": text]) // Notification과 관련된 데이터를 Dictionary로 전달한다.
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        inputField.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        inputField.resignFirstResponder()
+    }
 }
