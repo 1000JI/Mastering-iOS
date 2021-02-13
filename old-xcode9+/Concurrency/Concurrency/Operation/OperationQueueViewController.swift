@@ -23,17 +23,66 @@
 import UIKit
 
 class OperationQueueViewController: UIViewController {
-   
-   
-   @IBAction func startOperation(_ sender: Any) {
-      
-   }
-   
-   @IBAction func cancelOperation(_ sender: Any) {
-      
-   }
-   
-   deinit {
-      print(self, #function)
-   }
+    
+    // Operation Queue 생성(main)
+    let mainQueue = OperationQueue.main
+    let backgroundQueue = OperationQueue()
+    
+    var isCancelled = false
+    
+    @IBAction func startOperation(_ sender: Any) {
+        isCancelled = false
+        
+        backgroundQueue.addOperation {
+            autoreleasepool {
+                for _ in 1..<100 {
+                    guard !self.isCancelled else { return }
+                    print("🏍", separator: " ", terminator: " ")
+                    Thread.sleep(forTimeInterval: 0.3)
+                }
+            }
+        }
+        
+        let op = BlockOperation {
+            autoreleasepool {
+                for _ in 1..<100 {
+                    guard !self.isCancelled else { return }
+                    print("⛵️", separator: " ", terminator: " ")
+                    Thread.sleep(forTimeInterval: 0.6)
+                }
+            }
+        }
+        backgroundQueue.addOperation(op)
+        
+        op.addExecutionBlock {
+            autoreleasepool {
+                for _ in 1..<100 {
+                    guard !self.isCancelled else { return }
+                    print("🚥", separator: " ", terminator: " ")
+                    Thread.sleep(forTimeInterval: 0.5)
+                }
+            }
+        }
+        
+        let op2 = CustomOperation(type: "⛱")
+        backgroundQueue.addOperation(op2)
+        
+        op.completionBlock = {
+            print("Done")
+        }
+    }
+    
+    @IBAction func cancelOperation(_ sender: Any) {
+        isCancelled = true
+        backgroundQueue.cancelAllOperations()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancelOperation(self)
+    }
+    
+    deinit {
+        print(self, #function)
+    }
 }
